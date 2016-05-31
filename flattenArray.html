@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Flatten Array implementation</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<style>
+
+body
+{
+	font: 12pt Calibri;
+	text-align: center;
+}
+
+ #original-array span, #result-array span
+{
+	font-weight: bold;
+	font-style: italic;
+	color: green;
+}
+ #result-array
+{
+	margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<div id="original-array"><span>Original Array is</span> [1,2,[3,[4,5,[6,7,[8,9]],10,[11,12,[13]]]]]</div>
+<div id="result-array"><span>Flatten Array is</span> <span id="result"></span></div>
+<script>
+$(function(){
+var resultArray = [];
+function flatArray(array)
+{
+	for(var i in array)
+	{
+		if(Array.isArray(array[i]))
+			flatArray(array[i]);
+		else
+		    resultArray.push(array[i]);
+	}
+};
+var ar = [1,2,[3,[4,5,[6,7,[8,9]],10,[11,12,[13]]]]];
+flatArray(ar);
+$("#result").text("["+resultArray.join(',')+"]");
+
+});
+
+</script>
+</body>
+</html>
